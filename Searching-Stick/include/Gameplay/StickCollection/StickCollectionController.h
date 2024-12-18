@@ -36,7 +36,6 @@ namespace Gameplay
 			void resetSearchStick();
 			void processLinearSearch();
 			void resetVariables();
-			int getDelayMilliseconds();
 			void processSearchThreadState();
 			void joinThreads();
 			void destroy();
@@ -56,6 +55,7 @@ namespace Gameplay
 			int getNumberOfSticks();
 			int getNumberOfComparisons();
 			int getNumberOfArrayAccess();
+			int getDelayMilliseconds();
 			sf::String getTimeComplexity();
 		};
 	}

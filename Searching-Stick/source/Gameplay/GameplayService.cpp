@@ -59,4 +59,29 @@ namespace Gameplay
 		return stick_collection_controller->getSearchType();
 	}
 
+	int GameplayService::getNumberOfComparisons()
+	{
+		return stick_collection_controller->getNumberOfComparisons();
+	}
+
+	int GameplayService::getNumberOfArrayAccess()
+	{
+		return stick_collection_controller->getNumberOfArrayAccess();
+	}
+
+	int GameplayService::getNumberOfSticks()
+	{
+		return stick_collection_controller->getNumberOfSticks();
+	}
+
+	int GameplayService::getDelayMilliseconds()
+	{
+		return stick_collection_controller->getDelayMilliseconds();
+	}
+
+	sf::String GameplayService::getTimeComplexity()
+	{
+		return stick_collection_controller->getTimeComplexity();
+	}
+
 }

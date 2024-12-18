@@ -1,4 +1,5 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include <vector>
 
 namespace Gameplay
@@ -13,8 +14,8 @@ namespace Gameplay
 		class StickCollectionController
 		{
 		private:
-			StickCollectionView* collection_view;
-			StickCollectionModel* collection_model;
+			StickCollectionView* stick_collection_view;
+			StickCollectionModel* stick_collection_model;
 			std::vector<Stick*> sticks;
 			SearchType search_type;
 
@@ -36,7 +37,7 @@ namespace Gameplay
 			void render();
 
 			void reset();
-
+			void searchElement(SearchType search_type);
 			SearchType getSearchType();
 
 			int getNumberOfSticks();

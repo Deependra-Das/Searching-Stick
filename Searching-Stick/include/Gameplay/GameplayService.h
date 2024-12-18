@@ -8,14 +8,13 @@ namespace Gameplay
 	using namespace StickCollection;
 
 	class GameplayController;
-	class StickCollectionContoller;
 	enum class SearchType;
 
 	class GameplayService
 	{
 	private:
 		GameplayController* gameplay_controller;
-		StickCollectionContoller* collection_controller;
+		StickCollectionController* stick_collection_controller;
 
 	public:
 		GameplayService();

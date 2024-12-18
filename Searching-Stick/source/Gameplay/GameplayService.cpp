@@ -22,7 +22,14 @@ namespace Gameplay
 	{
 		gameplay_controller->initialize();
 		stick_collection_controller->initialize();
+		initializeRandomSeed();
 	}
+
+	void GameplayService::initializeRandomSeed()
+	{
+		std::srand(static_cast<unsigned int>(std::time(nullptr)));
+	}
+
 
 	void GameplayService::update()
 	{

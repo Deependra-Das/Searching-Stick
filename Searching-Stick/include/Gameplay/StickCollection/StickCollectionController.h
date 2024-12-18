@@ -16,8 +16,11 @@ namespace Gameplay
 		private:
 			StickCollectionView* stick_collection_view;
 			StickCollectionModel* stick_collection_model;
+			Stick* stick_to_search;
 			std::vector<Stick*> sticks;
 			SearchType search_type;
+			int number_of_comparisons;
+			int number_of_array_access;
 
 			void initializeSticks();
 			float calculateStickWidth();
@@ -25,7 +28,10 @@ namespace Gameplay
 			void resetSticksColor();
 			void initializeSticksArray();
 			float calculateStickHeight(int array_pos);
-
+			void shuffleSticks();
+			void resetSearchStick();
+			void processLinearSearch();
+			void resetVariables();
 			void destroy();
 
 		public:
@@ -41,6 +47,8 @@ namespace Gameplay
 			SearchType getSearchType();
 
 			int getNumberOfSticks();
+			int getNumberOfComparisons();
+			int getNumberOfArrayAccess();
 
 		};
 	}

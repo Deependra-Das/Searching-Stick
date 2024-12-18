@@ -49,4 +49,14 @@ namespace Gameplay
 		stick_collection_controller->reset();
 	}
 
+	void GameplayService::searchElement(StickCollection::SearchType search_type)
+	{
+		stick_collection_controller->searchElement(search_type);
+	}
+
+	StickCollection::SearchType GameplayService::getCurrentSearchType()
+	{
+		return stick_collection_controller->getSearchType();
+	}
+
 }

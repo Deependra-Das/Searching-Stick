@@ -176,7 +176,12 @@ namespace Gameplay
 				time_complexity = "O(n)";
 				search_thread = std::thread(&StickCollectionController::processLinearSearch, this);
 				break;
-		
+			case SearchType::BINARY_SEARCH:
+				sortElements();
+				time_complexity = "O(log n)";
+				current_operation_delay = stick_collection_model->binary_search_delay;
+				search_thread = std::thread(&StickCollectionController::processBinarySearch, this);
+				break;
 			}
 		}
 
@@ -218,6 +223,47 @@ namespace Gameplay
 			}
 		}
 
+		void StickCollectionController::processBinarySearch()
+		{
+			int left = 0;
+			int right = sticks.size();
+
+			Sound::SoundService* sound_service = Global::ServiceLocator::getInstance()->getSoundService();
+
+			while (left < right)
+			{
+				int mid = left + (right - left) / 2;
+				number_of_array_access += 2;
+				number_of_comparisons++;
+
+				sound_service->playSound(Sound::SoundType::COMPARE_SFX);
+
+				if (sticks[mid] == stick_to_search)
+				{
+					sticks[mid]->stick_view->setFillColor(stick_collection_model->found_element_color);
+					stick_to_search = nullptr;
+					return;
+				}
+
+				sticks[mid]->stick_view->setFillColor(stick_collection_model->processing_element_color);
+				std::this_thread::sleep_for(std::chrono::milliseconds(current_operation_delay));
+				sticks[mid]->stick_view->setFillColor(stick_collection_model->element_color);
+
+
+				number_of_array_access++;
+
+				if (sticks[mid]->data <= stick_to_search->data)
+				{
+					left = mid;
+				}
+				else 
+				{ 
+					right = mid; 
+				}
+			}
+		}
+
+
 		int StickCollectionController::getNumberOfComparisons()
 		{
 			return number_of_comparisons;
@@ -249,6 +295,18 @@ namespace Gameplay
 		sf::String StickCollectionController::getTimeComplexity()
 		{
 			return time_complexity;
+		}
+
+		void StickCollectionController::sortElements()
+		{
+			std::sort(sticks.begin(), sticks.end(), [this](const Stick* a, const Stick* b) { return compareElementsByData(a, b); });
+
+			updateSticksPosition();
+		}
+
+		bool StickCollectionController::compareElementsByData(const Stick* a, const Stick* b) const
+		{
+			return a->data < b->data;
 		}
 
 	}

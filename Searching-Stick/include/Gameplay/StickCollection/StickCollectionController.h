@@ -35,9 +35,12 @@ namespace Gameplay
 			void shuffleSticks();
 			void resetSearchStick();
 			void processLinearSearch();
+			void processBinarySearch();
 			void resetVariables();
 			void processSearchThreadState();
 			void joinThreads();
+			void sortElements();
+			bool compareElementsByData(const Stick* a, const Stick* b) const;
 			void destroy();
 
 		public:
